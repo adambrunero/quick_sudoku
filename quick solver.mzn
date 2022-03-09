@@ -12,7 +12,7 @@ array[RANGE] of RANGE: first_j = [((k-1) mod SIZE)*SIZE + 1| k in RANGE]; % firs
 include "alldifferent.mzn"; %means there is a constraint of that all elements of this collection must be different
 constraint forall(i in RANGE)(alldifferent([sudoku[i,j] | j in RANGE])); % each row must contain alldifferent elements
 constraint forall(j in RANGE)(alldifferent([sudoku[i,j] | i in RANGE])); % each col must contain all different elements
-constraint forall(k in RANGE)(alldifferent([sudoku[i,j] | i in first_i[k]..first_i[k]+2, j in first_j[k]..first_j[k]+2])); % each box must contain all different elements
+constraint forall(k in RANGE)(alldifferent([sudoku[i,j] | i in first_i[k]..first_i[k]+(SIZE -1), j in first_j[k]..first_j[k]+(SIZE - 1)])); % each box must contain all different elements
 
 %you can hard code in the different cells, or as a preferential table, I will add this later if required
 constraint sudoku[1,1] = 5;
